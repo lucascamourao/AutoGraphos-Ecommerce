@@ -1,0 +1,360 @@
+/* 
+    Created on : 12 de nov. de 2025, 16:27:20
+    Author     : Lucas Cabral Amador Mourão
+*/
+
+:root {
+  --background-color: linear-gradient(120deg, #04ff26, #007ac0);
+  --text-color: #000000;
+  --button-color: #ffffff;
+  --card-background-color: #ffffff;
+  --header-background-color: #0081a1;
+  --footer-background-color: #f4f5f6;
+  --button-background-color: #ef233c;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --button-hover-color: rgba(0, 0, 0, 0.2);
+  --form-container-background-color: #f4f5f6;
+  --product-description-font: black;
+  --search-icon-color: #0081a1;
+  --my-purchase-font-color: black;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  --background-color: #212529;
+  --text-color: #f8f9fa;
+  --card-background-color: #243649;
+  --header-background-color: #343a40;
+  --footer-background-color: #343a40;
+  --button-background-color: #1e2025;
+  --shadow-color: rgba(255, 255, 255, 0.1);
+  --button-hover-color: rgba(78, 78, 78, 0.2);
+  --form-container-background-color: #343a40;
+  --product-description-font: white;
+  --search-icon-color: #ffffff;
+}
+
+main {
+  flex: 1;
+}
+
+header {
+  background-color: var(--header-background-color);
+  color: #ffffff;
+  height: 50px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 5%;
+}
+
+footer {
+  background-color: var(--footer-background-color);
+  text-align: center;
+  font-size: 16px;
+  padding: 15.25px;
+}
+
+.product-container {
+  padding: 26px 20px;
+  max-width: 1020px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 40px;
+  column-gap: 60px;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8); /* Começa menor */
+    opacity: 0; /* Inicia invisível */
+  }
+  to {
+    transform: scale(1); /* Tamanho normal */
+    opacity: 1; /* Fica visível */
+  }
+}
+
+.product-card {
+  border: 1.4px solid #8d99ae;
+  border-radius: 8px;
+  width: 200px;
+  height: 300px;
+  text-align: center;
+  box-shadow: 0px 4px 3px 0px #00000040;
+  transition: box-shadow 0.4s ease-in-out;
+  animation: zoomIn 0.4s ease-out forwards;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-description {
+  font-size: 14px;
+  font-style: oblique;
+  text-align: center;
+  font-weight: 300;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: var(--product-description-font);
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.product-details-card {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-details-card:hover {
+  transform: scale(1.05);
+  transition: ease-in 0.2s;
+  box-shadow: 0 8px 12px rgba(214, 180, 100, 0.3);
+}
+
+.form-page-container {
+  max-width: 600px;
+  margin: 60px auto;
+  width: 700px;
+}
+
+.logo-photo img {
+  height: 50px; /* Aumenta a altura da imagem da logo */
+  width: auto; /* Mantém a proporção da imagem */
+}
+
+.form-page-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 600;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.form-container {
+  background-color: var(--form-container-background-color);
+  padding: 33px 61px;
+  border-radius: 8px;
+  box-shadow: 0px 5px 5px 0px #00000040;
+  text-align: center;
+}
+
+.form-group {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.button {
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 100px;
+  font-size: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #005c74;
+  color: white;
+}
+
+.header-button {
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 100px;
+  font-size: 14px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #005c74;
+  color: white;
+}
+
+.account-actions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.button-account-info {
+  padding: 0.75rem 1.5rem;
+  background-color: #0081a1;
+  color: white;
+  border: none;
+  border-radius: 0px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.button-account-info:hover {
+  transform: scale(1.05);
+  transition: ease-in 0.2s;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e8eaed;
+  border-radius: 12px;
+  font-size: 14px;
+  font-size: 14px;
+  color: #333;
+  font-family: inherit;
+}
+
+.my-purchase-card {
+  background-color: #fff;
+  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  align-items: center;
+}
+
+#my-purchase-text {
+  color: black;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #666;
+}
+
+.more-info {
+  display: none;
+  font-size: 14px;
+  color: #444;
+  margin-top: 10px;
+}
+
+.show-more {
+  padding-top: 5px;
+  background: none;
+  border: none;
+  color: #0081a1;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.3s;
+}
+
+.show-more:hover {
+  transform: scale(1.1);
+}
+
+.card.expanded .more-info {
+  display: block;
+}
+
+/* alinhar as cartas na tela */
+.nav-purchase-page {
+  display: flex;
+  flex-wrap: wrap; /* Permite que as cartas que não cabem na linha seguinte se movam para a linha seguinte */
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* alinha os itens dentro do container do logo */
+header > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* estiliza os botões para que pareçam um ícone */
+.button-header {
+  background-color: transparent;
+  color: var(--button-color);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+.button-header svg,
+.button-header i {
+  /* SVG inline ou <i> do FontAwesome */
+  width: 24px;
+  height: 24px;
+  font-size: 1.5rem; /* se usar FontAwesome */
+}
+
+#search-button {
+  color: var(
+    --search-icon-color
+  ); /* usa uma cor exclusiva para o botão de busca */
+}
+
+/* Adicione esta regra para alinhar os botões na navegação */
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Cria um espaço entre os dois botões */
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+#search-input {
+  background-color: var(--card-background-color, #fff);
+  color: var(--text-color, #000);
+  width: 30%;
+  height: 25px;
+  max-width: 350px;
+  padding: 10px 15px;
+  font-size: 0.8rem;
+  border-radius: 15px;
+  border: 1px solid var(--border-color, #ccc);
+  transition: all 0.3s;
+}
+

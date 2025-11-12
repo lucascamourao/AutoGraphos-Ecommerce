@@ -1,29 +1,19 @@
-<%-- 
-    Document   : index
-    Created on : 30 de out. de 2025, 17:06:49
-    Author     : Leonardo Oliveira Moreira
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>E-Commerce</title>
+    <title>Info</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css" />
-
     <script src="<%= request.getContextPath() %>/js/app.js" defer></script>
-
   </head>
-
   <body>
     <header>
       <a href="${pageContext.request.contextPath}/index.jsp" class="logo-photo">
         <div>
           <img
-            src="${pageContext.request.contextPath}/assets/images/icon_ecommerce_new.png"
+            src="..\assets\images\icon_ecommerce_new.png"
             alt="My Logo"
             height="32"
           />
@@ -88,70 +78,35 @@
       </nav>
     </header>
 
-    <main>
-      <div class="search-container">
-        <input type="text" id="search-input" placeholder="Seach for title..." />
+    <div class="form-page-container">
+      <h2>Informações de Conta</h2>
 
-        <button class="button-header" id="search-button">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="size-6"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
+      <div class="form-container">
+        <nav>
+          <ul class="account-actions-list">
+          <a href="${pageContext.request.contextPath}/pages/my-purchases-page.jsp">
+            <div>
+              <button class="button-account-info">Minhas Compras</button>
+            </div>
+          </a>
+          <div>
+            <button class="button-account-info">Alterar Dados</button>
+          </div>
+          <div>
+            <button class="button-account-info">Excluir Conta</button>
+          </div>
+          <div>
+            <button class="button-account-info">Sair</button>
+          </div>
+        </ul>
+        </nav>
       </div>
-
-      <div class="product-container">
-        <!-- All products go here -->
-        <!-- All Images 4:5-->
-
-        <a href="${pageContext.request.contextPath}/pages/details-product.jsp" class="product-details-card">
-          <div class="product-card">
-            <img src="assets/images/pele_ball.jpg" alt="Product View" />
-            <h3 class="product-description">Bola Autografada por Pelé</h3>
-          </div>
-        </a>
-
-        <a href="${pageContext.request.contextPath}/pages/details-product.jsp" class="product-details-card">
-          <div class="product-card">
-            <img src="assets/images/slipknot.jpg" alt="Product View" />
-            <h3 class="product-description">Guitarra Autografada SlipKnot</h3>
-          </div>
-        </a>
-
-        <a href="${pageContext.request.contextPath}/pages/details-product.jsp" class="product-details-card">
-          <div class="product-card">
-            <img src="assets/images/fotos-beatles.jpg" alt="Product View" />
-            <h3 class="product-description">Foto Autografada Beatles</h3>
-          </div>
-        </a>
-
-        <a href="${pageContext.request.contextPath}/pages/details-product.jsp" class="product-details-card">
-          <div class="product-card">
-            <img src="assets\images\pele_ball.jpg" alt="Product View" />
-            <h3 class="product-description">Bola Autografada por Pelé</h3>
-          </div>
-        </a>
-
-        <a href="${pageContext.request.contextPath}/pages/details-product.jsp" class="product-details-card">
-          <div class="product-card">
-            <img src="assets\images\pele_ball.jpg" alt="Product View" />
-            <h3 class="product-description">Bola Autografada por Pelé</h3>
-          </div>
-        </a>
-      </div>
-    </main>
+    </div>
 
     <footer>
       <p>&copy; 2025 E-Commerce WebDev &ndash; Name</p>
     </footer>
+
+    </div>
   </body>
 </html>
-
