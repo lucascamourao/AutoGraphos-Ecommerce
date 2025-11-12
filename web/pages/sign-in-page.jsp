@@ -82,12 +82,13 @@
       <div class="form-page-container">
         <h2>Login</h2>
         <div class="form-container">
-          <form>
+          <form action="${pageContext.request.contextPath}/Login" method="post">
             <div class="form-group">
               <label for="user-name">Usuário</label>
               <input
                 type="text"
                 id="movie-name"
+                name="login"
                 placeholder="Insira seu usuário"
               />
             </div>
@@ -95,8 +96,9 @@
             <div class="form-group">
               <label for="poster-url">Senha</label>
               <input
-                type="text"
+                type="password"
                 id="poster-url"
+                name="senha"
                 placeholder="Insira sua senha"
               />
             </div>

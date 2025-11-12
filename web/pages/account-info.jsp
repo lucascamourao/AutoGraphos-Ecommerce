@@ -13,7 +13,7 @@
       <a href="${pageContext.request.contextPath}/index.jsp" class="logo-photo">
         <div>
           <img
-            src="..\assets\images\icon_ecommerce_new.png"
+            src="<%= request.getContextPath() %>\assets\images\icon_ecommerce_new.png"
             alt="My Logo"
             height="32"
           />

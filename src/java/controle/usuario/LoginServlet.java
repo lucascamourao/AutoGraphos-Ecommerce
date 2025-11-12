@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(c);
             HttpSession session = request.getSession(true);
             session.setAttribute("usuario", usuario);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("principal.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("pages/account-info.jsp");
             requestDispatcher.forward(request, response);
         } else {
             request.setAttribute("mensagem", "Login ou senha incorreta");

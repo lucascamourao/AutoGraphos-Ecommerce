@@ -14,7 +14,7 @@
       <a href="${pageContext.request.contextPath}/index.jsp" class="logo-photo">
         <div>
           <img
-            src="..\assets\images\icon_ecommerce_new.png"
+            src="<%= request.getContextPath() %>\assets\images\icon_ecommerce_new.png"
             alt="My Logo"
             height="32"
           />
@@ -83,7 +83,7 @@
       <div class="form-page-container">
         <h2>Cadastrar</h2>
         <div class="form-container">
-          <form action="../InserirCliente" method="post">
+          <form action="${pageContext.request.contextPath}/InserirCliente" method="post">
             <div class="form-group">
               <label for="email">Email</label>
               <input
@@ -136,6 +136,9 @@
 
             <button type="submit" class="button">Criar</button>
           </form>
+          <% if (request.getAttribute("mensagem") != null) {%>
+          <h3><%= request.getAttribute("mensagem")%></h3>
+          <% }%>
         </div>
       </div>
     </main>
@@ -146,5 +149,6 @@
 
     <script src="<%= request.getContextPath() %>/js/app.js"></script>
     <script src="../js/form-validation.js" type="text/javascript"></script>
+    
   </body>
 </html>
