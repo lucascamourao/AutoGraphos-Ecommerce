@@ -1,14 +1,20 @@
-<%@ page import="model.usuario.Usuario" %>
+<%-- 
+    Document   : update-info
+    Created on : 12 de nov. de 2025, 19:15:35
+    Author     : guilh
+--%>
+<%@page import="model.usuario.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Info</title>
+    <title>E-Commerce</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css" />
-    <script src="<%= request.getContextPath() %>/js/app.js" defer></script>
+
   </head>
+
   <body>
     <header>
       <a href="${pageContext.request.contextPath}/index.jsp" class="logo-photo">
@@ -79,54 +85,78 @@
       </nav>
     </header>
 
-    <div class="form-page-container">
-      <h2>Informações de Conta</h2>
-
-      <div class="form-container">
-            <%
-            Usuario usuario = (Usuario) session.getAttribute("usuario");
-            if (usuario != null) {
-            %>
-              <h3>Olá, <%= usuario.getNome() %>!</h3>
-              <h4>Você é um <%= usuario.getAdministrador() ? "Administrador" : "Cliente" %>.</h4>
-            <%
-            } else {
-            %>
-              <h3>Usuário não está logado.</h3>
-            <%
-            }
-            %>
-        <nav>
-          <ul class="account-actions-list">
-          <a href="${pageContext.request.contextPath}/pages/my-purchases-page.jsp">
-            <div>
-              <button class="button-account-info">Minhas Compras</button>
+    <main>
+      <div class="form-page-container">
+        <h2>Alterar Dados</h2>
+        <div class="form-container">
+          <% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
+          <form action="${pageContext.request.contextPath}/AtualizarUsuario" method="post">
+            <input type="hidden" name="id" value="<%= usuario.getId() %>" />
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="text"
+                id="movie-name"
+                name="email"
+                value="<%= usuario.getEmail() %>"
+              />
             </div>
-          </a>
-          <div>
-            <a href="${pageContext.request.contextPath}/pages/update-info.jsp">
-                <button class="button-account-info" aria-label="Update Info">Alterar Dados</button>
-            </a>
-          </div>
-          <div>
-           <a href="${pageContext.request.contextPath}/RemoverUsuario?id=<%= usuario.getId()%>">
-             <button class="button-account-info">Excluir Conta</button>
-           </a>
-          </div>
-          <div>
-            <a href="${pageContext.request.contextPath}/Logout">
-                <button class="button-account-info">Sair</button>
-            </a>
-          </div>
-        </ul>
-        </nav>
+
+            <div class="form-group">
+              <label for="movie-name">Nome</label>
+              <input
+                type="text"
+                id="movie-name"
+                name="nome"
+                value="<%= usuario.getNome() %>"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="movie-name">Endereço</label>
+              <input
+                type="text"
+                id="movie-name"
+                name="endereco"
+                value="<%= usuario.getEndereco() %>"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="movie-name">Usuário</label>
+              <input
+                type="text"
+                id="movie-name"
+                name="login"
+                value="<%= usuario.getLogin() %>"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="poster-url">Senha</label>
+              <input
+                type="password"
+                id="poster-url"
+                name="senha"
+                value="<%= usuario.getSenha() %>"
+              />
+            </div>
+
+            <button type="submit" class="button">Alterar</button>
+          </form>
+          <% if (request.getAttribute("mensagem") != null) {%>
+          <h3><%= request.getAttribute("mensagem")%></h3>
+          <% }%>
+        </div>
       </div>
-    </div>
+    </main>
 
     <footer>
       <p>&copy; 2025 E-Commerce WebDev &ndash; Name</p>
     </footer>
 
-    </div>
+    <script src="<%= request.getContextPath() %>/js/app.js"></script>
+    <script src="../js/form-validation.js" type="text/javascript"></script>
+    
   </body>
 </html>

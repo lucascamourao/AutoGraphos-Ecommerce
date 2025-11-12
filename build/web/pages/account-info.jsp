@@ -1,3 +1,4 @@
+<%@ page import="model.usuario.Usuario" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,6 +83,19 @@
       <h2>Informações de Conta</h2>
 
       <div class="form-container">
+            <%
+            Usuario usuario = (Usuario) session.getAttribute("usuario");
+            if (usuario != null) {
+            %>
+              <h3>Olá, <%= usuario.getNome() %>!</h3>
+              <h4>Você é um <%= usuario.getAdministrador() ? "Administrador" : "Cliente" %>.</h4>
+            <%
+            } else {
+            %>
+              <h3>Usuário não está logado.</h3>
+            <%
+            }
+            %>
         <nav>
           <ul class="account-actions-list">
           <a href="${pageContext.request.contextPath}/pages/my-purchases-page.jsp">
@@ -90,13 +104,19 @@
             </div>
           </a>
           <div>
-            <button class="button-account-info">Alterar Dados</button>
+            <a href="${pageContext.request.contextPath}/pages/update-info.jsp">
+                <button class="button-account-info" aria-label="Update Info">Alterar Dados</button>
+            </a>
           </div>
           <div>
-            <button class="button-account-info">Excluir Conta</button>
+           <a href="${pageContext.request.contextPath}/RemoverUsuario?id=<%= usuario.getId()%>">
+             <button class="button-account-info">Excluir Conta</button>
+           </a>
           </div>
           <div>
-            <button class="button-account-info">Sair</button>
+            <a href="${pageContext.request.contextPath}/Logout">
+                <button class="button-account-info">Sair</button>
+            </a>
           </div>
         </ul>
         </nav>
