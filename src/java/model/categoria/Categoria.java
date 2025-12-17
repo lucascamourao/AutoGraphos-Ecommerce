@@ -9,7 +9,7 @@ package model.categoria;
 public class Categoria {
     
     private Integer id;
-    private String descricao;
+    private String nome;
 
     public Integer getId() {
         return id;
@@ -19,12 +19,12 @@ public class Categoria {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNome(String descricao) {
+        this.nome = descricao;
     }
     
 }

@@ -1,14 +1,17 @@
-<%@ page import="model.usuario.Usuario" %>
+<%@page import="model.usuario.Usuario"%>
+<%@page import="model.categoria.Categoria"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Info</title>
+    <title>E-Commerce</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css" />
-    <script src="<%= request.getContextPath() %>/js/app.js" defer></script>
+
   </head>
+
   <body>
     <header>
       <a href="${pageContext.request.contextPath}/index.jsp" class="logo-photo">
@@ -79,71 +82,25 @@
       </nav>
     </header>
 
-    <div class="form-page-container">
-      <h2>Informações de Conta</h2>
-
-      <div class="form-container">
-            <%
-            Usuario usuario = (Usuario) session.getAttribute("usuario");
-            if (usuario != null) {
-            %>
-              <h3>Olá, <%= usuario.getNome() %>!</h3>
-              <h4>Você é um <%= usuario.getAdministrador() ? "Administrador" : "Cliente" %>.</h4>
-            <%
-            } else {
-            %>
-              <h3>Usuário não está logado.</h3>
-            <%
-            }
-            %>
-        <nav>
-          <ul class="account-actions-list">
-          <a href="${pageContext.request.contextPath}/pages/my-purchases-page.jsp">
-            <div>
-              <button class="button-account-info">Minhas Compras</button>
-            </div>
-          </a>
-          
-          <% if (usuario.getAdministrador()) {
-            %>
-          <div>
-            <a href="${pageContext.request.contextPath}/pages/list-products.jsp">
-                <button class="button-account-info" aria-label="Update Info">Produtos</button>
-            </a>
-          </div>
-          <div>
-            <a href="${pageContext.request.contextPath}/admin/ListarCategoria">
-                <button class="button-account-info" aria-label="Update Info">Categorias</button>
-            </a>
-          </div>
-          <% 
-           } 
-          %>
-                
-          <div>
-            <a href="${pageContext.request.contextPath}/pages/update-info.jsp">
-                <button class="button-account-info" aria-label="Update Info">Alterar Dados</button>
-            </a>
-          </div>
-          <div>
-           <a href="${pageContext.request.contextPath}/RemoverUsuario?id=<%= usuario.getId()%>">
-             <button class="button-account-info">Excluir Conta</button>
-           </a>
-          </div>
-          <div>
-            <a href="${pageContext.request.contextPath}/Logout">
-                <button class="button-account-info">Sair</button>
-            </a>
-          </div>
-        </ul>
-        </nav>
-      </div>
-    </div>
+    <main>
+        <h3>Atualizar uma Categoria Existente</h3>
+        <%
+            Categoria categoria = (Categoria) request.getAttribute("categoria");
+        %>
+        <form action="<%= request.getContextPath() %>/admin/AtualizarCategoria">
+            <input type="hidden" name="id" value="<%= categoria.getId() %>" />
+            <input type="text" name="nome" placeholder="Entre com o nome da categoria" value="<%= categoria.getNome() %>" /><br/>
+            <input type="submit" value="Atualizar"/>
+        </form>
+        <a href="<%= request.getContextPath() %>/admin/ListarCategoria">Voltar</a>
+    </main>
 
     <footer>
       <p>&copy; 2025 E-Commerce WebDev &ndash; Name</p>
     </footer>
 
-    </div>
+    <script src="<%= request.getContextPath() %>/js/app.js"></script>
+    <script src="../js/form-validation.js" type="text/javascript"></script>
+    
   </body>
 </html>

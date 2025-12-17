@@ -103,6 +103,23 @@
               <button class="button-account-info">Minhas Compras</button>
             </div>
           </a>
+          
+          <% if (usuario.getAdministrador()) {
+            %>
+          <div>
+            <a href="${pageContext.request.contextPath}/pages/list-products.jsp">
+                <button class="button-account-info" aria-label="Update Info">Produtos</button>
+            </a>
+          </div>
+          <div>
+            <a href="${pageContext.request.contextPath}/admin/ListarCategoria">
+                <button class="button-account-info" aria-label="Update Info">Categorias</button>
+            </a>
+          </div>
+          <% 
+           } 
+          %>
+                
           <div>
             <a href="${pageContext.request.contextPath}/pages/update-info.jsp">
                 <button class="button-account-info" aria-label="Update Info">Alterar Dados</button>
