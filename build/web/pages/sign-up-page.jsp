@@ -88,14 +88,14 @@
               <label for="email">Email</label>
               <input
                 type="text"
-                id="movie-name"
+                id="email"
                 name="email"
                 placeholder="Insira seu email"
               />
             </div>
 
             <div class="form-group">
-              <label for="movie-name">Nome</label>
+              <label for="name">Nome</label>
               <input
                 type="text"
                 id="movie-name"
@@ -105,7 +105,7 @@
             </div>
 
             <div class="form-group">
-              <label for="movie-name">Endereço</label>
+              <label for="endereco">Endereço</label>
               <input
                 type="text"
                 id="movie-name"
@@ -127,7 +127,7 @@
             <div class="form-group">
               <label for="poster-url">Senha</label>
               <input
-                type="text"
+                type="password"
                 id="poster-url"
                 name="senha"
                 placeholder="Insira sua senha"
