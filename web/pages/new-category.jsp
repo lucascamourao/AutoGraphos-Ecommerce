@@ -83,12 +83,30 @@
     </header>
 
     <main>
-        <h3>Cadastro de uma Nova Categoria</h3>
-        <form action="<%= request.getContextPath() %>/admin/InserirCategoria">
-            <input type="text" name="nome" placeholder="Entre com o nome da categoria" /><br/>
-            <input type="submit" value="Inserir"/>
-        </form>
+      <div class="form-page-container">
+        <h2>Cadastro de uma Nova Categoria</h2>
+        <div class="form-container">
+          <form action="<%= request.getContextPath() %>/admin/InserirCategoria" method="post">
+            <div class="form-group">
+              <label for="nome-categoria">Nome da Categoria</label>
+              <input
+                type="text"
+                id="nome-categoria"
+                name="nome"
+                placeholder="Entre com o nome da categoria"
+              />
+            </div>
+
+            <button type="submit" class="button">Inserir</button>
+          </form>
+
+          <% if (request.getAttribute("mensagem") != null) { %>
+            <h3><%= request.getAttribute("mensagem") %></h3>
+          <% } %>
+        </div>
+      </div>
     </main>
+
 
     <footer>
       <p>&copy; 2025 E-Commerce WebDev &ndash; Name</p>

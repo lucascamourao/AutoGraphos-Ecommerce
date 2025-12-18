@@ -83,25 +83,55 @@
     </header>
 
     <main>
-        <h3>Cadastro de um Novo Produto</h3>
-        <form action="<%= request.getContextPath() %>/admin/InserirProduto" method="post" enctype="multipart/form-data">
-            <input type="text" name="descricao" placeholder="Entre com o descrição do produto" /><br/>
-            <input type="text" name="preco" placeholder="Entre com o preço do produto" /><br/>
-            <input type="file" name="foto" placeholder="Entre com a foto do produto" /><br/>
-            <input type="text" name="quantidade" placeholder="Entre com o quantidade do produto" /><br/>
-            <%
-            List<Categoria> categorias = (List<Categoria>) request.getAttribute("categorias");
-            %>
-            <select name="categoriaId">
+      <div class="form-page-container">
+        <h2>Cadastro de um Novo Produto</h2>
+
+        <div class="form-container">
+          <form action="<%= request.getContextPath() %>/admin/InserirProduto" method="post" enctype="multipart/form-data">
+
+            <div class="form-group">
+              <label for="descricao">Descrição do Produto</label>
+              <input type="text" id="descricao" name="descricao" placeholder="Entre com a descrição do produto" />
+            </div>
+
+            <div class="form-group">
+              <label for="preco">Preço</label>
+              <input type="text" id="preco" name="preco" placeholder="Entre com o preço do produto" />
+            </div>
+
+            <div class="form-group">
+              <label for="foto">Foto do Produto</label>
+              <input type="file" id="foto" name="foto" />
+            </div>
+
+            <div class="form-group">
+              <label for="quantidade">Quantidade</label>
+              <input type="text" id="quantidade" name="quantidade" placeholder="Entre com a quantidade do produto" />
+            </div>
+
+            <div class="form-group">
+              <label for="categoriaId">Categoria</label>
+              <select id="categoriaId" name="categoriaId">
                 <option value="">Selecione...</option>
-                <% for (Categoria c : categorias) { %>
+                <%
+                  List<Categoria> categorias = (List<Categoria>) request.getAttribute("categorias");
+                  for (Categoria c : categorias) {
+                %>
                 <option value="<%= c.getId() %>"><%= c.getNome() %></option>
-                <% } %>
-            </select>
-            <br/>
-            <input type="submit" value="Inserir"/>
-        </form>
+                <%
+                  }
+                %>
+              </select>
+            </div>
+
+            <div style="margin-top: 12px; text-align: center;">
+              <button type="submit" class="button">Inserir</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </main>
+
 
     <footer>
       <p>&copy; 2025 E-Commerce WebDev &ndash; Name</p>

@@ -83,17 +83,40 @@
     </header>
 
     <main>
-        <h3>Atualizar uma Categoria Existente</h3>
-        <%
+      <div class="form-page-container">
+        <h2>Atualizar uma Categoria Existente</h2>
+        <div class="form-container">
+          <%
             Categoria categoria = (Categoria) request.getAttribute("categoria");
-        %>
-        <form action="<%= request.getContextPath() %>/admin/AtualizarCategoria">
+          %>
+          <form action="<%= request.getContextPath() %>/admin/AtualizarCategoria" method="post">
             <input type="hidden" name="id" value="<%= categoria.getId() %>" />
-            <input type="text" name="nome" placeholder="Entre com o nome da categoria" value="<%= categoria.getNome() %>" /><br/>
-            <input type="submit" value="Atualizar"/>
-        </form>
-        <a href="<%= request.getContextPath() %>/admin/ListarCategoria">Voltar</a>
+
+            <div class="form-group">
+              <label for="nome-categoria">Nome da Categoria</label>
+              <input
+                type="text"
+                id="nome-categoria"
+                name="nome"
+                placeholder="Entre com o nome da categoria"
+                value="<%= categoria.getNome() %>"
+              />
+            </div>
+
+            <button type="submit" class="button">Atualizar</button>
+          </form>
+
+          <div style="margin-top: 12px; text-align: center;">
+            <a href="<%= request.getContextPath() %>/admin/ListarCategoria" class="button" style="text-decoration: none;">Voltar</a>
+          </div>
+
+          <% if (request.getAttribute("mensagem") != null) { %>
+            <h3><%= request.getAttribute("mensagem") %></h3>
+          <% } %>
+        </div>
+      </div>
     </main>
+
 
     <footer>
       <p>&copy; 2025 E-Commerce WebDev &ndash; Name</p>

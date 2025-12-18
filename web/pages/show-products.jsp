@@ -84,33 +84,64 @@
     </header>
 
     <main>
-        <h3>Atualizar um Produto Existente</h3>
-        <%
+      <div class="form-page-container">
+        <h2>Atualizar um Produto Existente</h2>
+
+        <div class="form-container">
+          <%
             Produto produto = (Produto) request.getAttribute("produto");
-        %>
-        <form action="<%= request.getContextPath() %>/admin/AtualizarProduto"  method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<%= produto.getId() %>" />
-            <input type="text" name="descricao" placeholder="Entre com a descrição do produto" value="<%= produto.getDescricao() %>" /><br/>
-            <input type="text" name="preco" placeholder="Entre com o preço do produto" value="<%= produto.getPreco() %>" /><br/>
-            <input type="file" name="foto" placeholder="Entre com a foto do produto" /><br/>
-            <input type="text" name="quantidade" placeholder="Entre com o quantidade do produto" value="<%= produto.getQuantidade() %>" /><br/>
-            <%
             List<Categoria> categorias = (List<Categoria>) request.getAttribute("categorias");
-            %>
-            <select name="categoriaId">
+          %>
+
+          <form action="<%= request.getContextPath() %>/admin/AtualizarProduto" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<%= produto.getId() %>" />
+
+            <div class="form-group">
+              <label for="descricao">Descrição do Produto</label>
+              <input type="text" id="descricao" name="descricao" placeholder="Entre com a descrição do produto" value="<%= produto.getDescricao() %>" />
+            </div>
+
+            <div class="form-group">
+              <label for="preco">Preço</label>
+              <input type="text" id="preco" name="preco" placeholder="Entre com o preço do produto" value="<%= produto.getPreco() %>" />
+            </div>
+
+            <div class="form-group">
+              <label for="foto">Foto do Produto</label>
+              <input type="file" id="foto" name="foto" />
+            </div>
+
+            <div class="form-group">
+              <label for="quantidade">Quantidade</label>
+              <input type="text" id="quantidade" name="quantidade" placeholder="Entre com a quantidade do produto" value="<%= produto.getQuantidade() %>" />
+            </div>
+
+            <div class="form-group">
+              <label for="categoriaId">Categoria</label>
+              <select id="categoriaId" name="categoriaId">
                 <option value="">Selecione...</option>
                 <% for (Categoria c : categorias) { %>
-                    <% if (c.getId().intValue() == produto.getCategoria().getId().intValue()) { %>
-                    <option selected="true" value="<%= c.getId() %>"><%= c.getNome() %></option>    
-                    <% } else { %>
-                <option value="<%= c.getId() %>"><%= c.getNome() %></option>
-                    <% } %>
+                  <% if (c.getId().intValue() == produto.getCategoria().getId().intValue()) { %>
+                    <option selected="true" value="<%= c.getId() %>"><%= c.getNome() %></option>
+                  <% } else { %>
+                    <option value="<%= c.getId() %>"><%= c.getNome() %></option>
+                  <% } %>
                 <% } %>
-            </select>
-            <input type="submit" value="Atualizar"/>
-        </form>
-        <a href="<%= request.getContextPath() %>/admin/ListarProduto">Voltar</a>
+              </select>
+            </div>
+
+            <div style="margin-top: 12px; text-align: center;">
+              <button type="submit" class="button">Atualizar</button>
+            </div>
+          </form>
+
+          <div style="margin-top: 12px; text-align: center;">
+            <a href="<%= request.getContextPath() %>/admin/ListarProduto" class="button" style="text-decoration: none;">Voltar</a>
+          </div>
+        </div>
+      </div>
     </main>
+
 
     <footer>
       <p>&copy; 2025 E-Commerce WebDev &ndash; Name</p>

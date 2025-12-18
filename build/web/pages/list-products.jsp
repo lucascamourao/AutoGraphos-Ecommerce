@@ -84,7 +84,9 @@
     </header>
 
 <main>
+    <div style="margin-top: 20px;text-align: center;">
     <h2>Cadastro de Produtos</h2>
+    </div>
 
     <%
         List<Produto> produtos = (List<Produto>) request.getAttribute("produtos");
@@ -100,12 +102,10 @@
                 %>
                 <div class="my-purchase-card">
                     <div class="card-content">
-                        <div class="cor-produtos">
                             <h3><strong><%= p.getDescricao() %></strong></h3>
                             <p><strong>Preço:</strong> R$ <%= p.getPreco() %></p>
                             <p><strong>Quantidade:</strong> <%= p.getQuantidade() %></p>
                             <p><strong>Categoria:</strong> <%= p.getCategoria().getNome() %></p>
-                        </div>
                         <div class="more-info"></div>
 
                         <div style="display: flex; gap: 10px; margin-top: 12px;">
@@ -136,7 +136,7 @@
         }
     %>
 
-    <div style="margin-top: 20px;">
+    <div style="margin-bottom: 10px; text-align: center;">
         <a href="<%= request.getContextPath() %>/admin/NovoProduto">
             <button class="header-button">Novo Produto</button>
         </a>

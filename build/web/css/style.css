@@ -98,7 +98,7 @@ footer {
   border: 1.4px solid #8d99ae;
   border-radius: 8px;
   width: 200px;
-  height: 300px;
+  height: auto;
   text-align: center;
   box-shadow: 0px 4px 3px 0px #00000040;
   transition: box-shadow 0.4s ease-in-out;
@@ -122,6 +122,7 @@ footer {
 }
 
 .product-details-card {
+  display: block;
   text-decoration: none;
   color: inherit;
   transition: transform 0.3s ease, box-shadow 0.3s ease;

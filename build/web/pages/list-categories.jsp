@@ -83,43 +83,57 @@
     </header>
 
     <main>
-        <h3>Cadastro de Categorias</h3>
+        <div style="margin-top: 20px; text-align: center;">
+            <h2>Cadastro de Categorias</h2>
+        </div>
+
         <%
             List<Categoria> categorias = (List<Categoria>) request.getAttribute("categorias");
             if (categorias != null && !categorias.isEmpty()) {
         %>
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">&nbsp;</th>
-                    </tr>
-                </thead>
-                <tbody>
+
+        <div class="form-page-container">
+            <div class="form-container">
+                <nav class="nav-purchase-page">
+
                     <%
                         for (Categoria c : categorias) {
                     %>
-                    <tr>
-                        <td><%= c.getId()%></td>
-                        <td><%= c.getNome()%></td>
-                        <td><a href="<%= request.getContextPath()%>/admin/MostrarCategoria?id=<%= c.getId()%>" role="button" class="btn btn-primary">Atualizar</a>&nbsp;<a href="<%= request.getContextPath()%>/admin/RemoverCategoria?id=<%= c.getId()%>" role="button" class="btn btn-danger">Remover</a></td>
-                    </tr>
+                    <div class="my-purchase-card">
+                        <div class="card-content">
+                            <h3><strong><%= c.getNome() %></strong></h3>
+                            <div style="display: flex; gap: 10px; margin-top: 12px;">
+                                <a href="<%= request.getContextPath() %>/admin/MostrarCategoria?id=<%= c.getId() %>">
+                                    <button class="header-button">Atualizar</button>
+                                </a>
+
+                                <a href="<%= request.getContextPath() %>/admin/RemoverCategoria?id=<%= c.getId() %>">
+                                    <button class="header-button">Remover</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <%
                         }
                     %>
-                </tbody>
-            </table>
+
+                </nav>
+            </div>
         </div>
+
         <%
             } else {
         %>
-        <div>Não existem categorias registradas</div>
+            <p>Não existem categorias registradas.</p>
         <%
             }
         %>
-        <a href="<%= request.getContextPath()%>/admin/NovaCategoria" role="button" class="btn btn-primary">Nova Categoria</a>
+
+        <div style="margin-bottom: 10px; text-align: center;">
+            <a href="<%= request.getContextPath() %>/admin/NovaCategoria">
+                <button class="header-button">Nova Categoria</button>
+            </a>
+        </div>
     </main>
 
     <footer>
