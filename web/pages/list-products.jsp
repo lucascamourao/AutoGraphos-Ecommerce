@@ -15,7 +15,7 @@
 
   <body>
     <header>
-      <a href="${pageContext.request.contextPath}/index.jsp" class="logo-photo">
+      <a href="<%= request.getContextPath()%>/Inicio" class="logo-photo">
         <div>
           <img
             src="<%= request.getContextPath() %>\assets\images\icon_ecommerce_new.png"
@@ -83,51 +83,66 @@
       </nav>
     </header>
 
-    <main>
-        <h3>Cadastro de Produtos</h3>
-        <%
-            List<Produto> produtos = (List<Produto>) request.getAttribute("produtos");
-            if (produtos != null && !produtos.isEmpty()) {
-        %>
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="col">Preço</th>
-                        <th scope="col">Quantidade</th>
-                        <th scope="col">Categoria</th>
-                        <th scope="col">&nbsp;</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%
-                        for (Produto p : produtos) {
-                    %>
-                    <tr>
-                        <td><%= p.getId()%></td>
-                        <td><%= p.getDescricao()%></td>
-                        <td><%= p.getPreco()%></td>
-                        <td><%= p.getQuantidade()%></td>
-                        <td><%= p.getCategoria().getNome()%></td>
-                        <td><a href="<%= request.getContextPath()%>/admin/MostrarProduto?id=<%= p.getId()%>" role="button" class="btn btn-primary">Atualizar</a>&nbsp;<a href="<%= request.getContextPath()%>/admin/RemoverProduto?id=<%= p.getId()%>" role="button" class="btn btn-danger">Remover</a></td>
-                    </tr>
-                    <%
-                        }
-                    %>
-                </tbody>
-            </table>
+<main>
+    <h2>Cadastro de Produtos</h2>
+
+    <%
+        List<Produto> produtos = (List<Produto>) request.getAttribute("produtos");
+        if (produtos != null && !produtos.isEmpty()) {
+    %>
+
+    <div class="form-page-container">
+        <div class="form-container">
+            <nav class="nav-purchase-page">
+
+                <%
+                    for (Produto p : produtos) {
+                %>
+                <div class="my-purchase-card">
+                    <div class="card-content">
+                        <div class="cor-produtos">
+                            <h3><strong><%= p.getDescricao() %></strong></h3>
+                            <p><strong>Preço:</strong> R$ <%= p.getPreco() %></p>
+                            <p><strong>Quantidade:</strong> <%= p.getQuantidade() %></p>
+                            <p><strong>Categoria:</strong> <%= p.getCategoria().getNome() %></p>
+                        </div>
+                        <div class="more-info"></div>
+
+                        <div style="display: flex; gap: 10px; margin-top: 12px;">
+                            <a href="<%= request.getContextPath() %>/admin/MostrarProduto?id=<%= p.getId() %>">
+                                <button class="header-button">Atualizar</button>
+                            </a>
+
+                            <a href="<%= request.getContextPath() %>/admin/RemoverProduto?id=<%= p.getId() %>">
+                                <button class="header-button">Remover</button>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <%
+                    }
+                %>
+
+            </nav>
         </div>
-        <%
-            } else {
-        %>
-        <div>Não existem produtos registrados</div>
-        <%
-            }
-        %>
-        <a href="<%= request.getContextPath()%>/admin/NovoProduto" role="button" class="btn btn-primary">Novo Produto</a>
-    </main>
+    </div>
+
+    <%
+        } else {
+    %>
+        <p>Não existem produtos registrados.</p>
+    <%
+        }
+    %>
+
+    <div style="margin-top: 20px;">
+        <a href="<%= request.getContextPath() %>/admin/NovoProduto">
+            <button class="header-button">Novo Produto</button>
+        </a>
+    </div>
+</main>
+
 
     <footer>
       <p>&copy; 2025 E-Commerce WebDev &ndash; Name</p>

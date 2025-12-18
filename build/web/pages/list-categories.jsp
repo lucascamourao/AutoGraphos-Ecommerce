@@ -14,7 +14,7 @@
 
   <body>
     <header>
-      <a href="${pageContext.request.contextPath}/index.jsp" class="logo-photo">
+      <a href="<%= request.getContextPath()%>/Inicio" class="logo-photo">
         <div>
           <img
             src="<%= request.getContextPath() %>\assets\images\icon_ecommerce_new.png"

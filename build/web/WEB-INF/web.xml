@@ -13,10 +13,6 @@
         <servlet-class>controle.usuario.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>InicioServlet</servlet-name>
-        <servlet-class>controle.inicio.InicioServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>RemoverUsuarioServlet</servlet-name>
         <servlet-class>controle.usuario.RemoverUsuarioServlet</servlet-class>
     </servlet>
@@ -37,10 +33,6 @@
         <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>InicioServlet</servlet-name>
-        <url-pattern>/Inicio</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>RemoverUsuarioServlet</servlet-name>
         <url-pattern>/RemoverUsuario</url-pattern>
     </servlet-mapping>
@@ -48,7 +40,6 @@
         <servlet-name>AtualizarUsuarioServlet</servlet-name>
         <url-pattern>/AtualizarUsuario</url-pattern>
     </servlet-mapping>
-    
     <!-- Categoria -->
     <servlet>
         <servlet-name>ListarCategoriaServlet</servlet-name>
@@ -74,8 +65,7 @@
         <servlet-name>RemoverCategoriaServlet</servlet-name>
         <servlet-class>controle.categoria.RemoverCategoriaServlet</servlet-class>
     </servlet>
-    
-<!-- Categoria -->
+    <!-- Categoria -->
     <servlet-mapping>
         <servlet-name>ListarCategoriaServlet</servlet-name>
         <url-pattern>/admin/ListarCategoria</url-pattern>
@@ -100,7 +90,6 @@
         <servlet-name>RemoverCategoriaServlet</servlet-name>
         <url-pattern>/admin/RemoverCategoria</url-pattern>
     </servlet-mapping>
-    
     <!-- Produto -->
     <servlet>
         <servlet-name>ListarProdutoServlet</servlet-name>
@@ -148,7 +137,6 @@
         <servlet-name>RemoverProdutoServlet</servlet-name>
         <servlet-class>controle.produto.RemoverProdutoServlet</servlet-class>
     </servlet>
-    
     <!-- Produto -->
     <servlet-mapping>
         <servlet-name>ListarProdutoServlet</servlet-name>
@@ -179,6 +167,15 @@
         <url-pattern>/admin/RemoverProduto</url-pattern>
     </servlet-mapping>
     
+    
+    <servlet>
+        <servlet-name>InicioServlet</servlet-name>
+        <servlet-class>controle.inicio.InicioServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InicioServlet</servlet-name>
+        <url-pattern>/Inicio</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>Inicio</welcome-file>
     </welcome-file-list>
