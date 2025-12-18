@@ -3,7 +3,8 @@
     Created on : 30 de out. de 2025, 17:06:49
     Author     : Leonardo Oliveira Moreira
 --%>
-
+<%@page import="model.produto.Produto"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -20,7 +21,7 @@
 
   <body>
     <header>
-      <a href="${pageContext.request.contextPath}/index.jsp" class="logo-photo">
+      <a href="<%= request.getContextPath()%>/Inicio" class="logo-photo">
         <div>
           <img
             src="${pageContext.request.contextPath}/assets/images/icon_ecommerce_new.png"
@@ -112,41 +113,47 @@
         <!-- All products go here -->
         <!-- All Images 4:5-->
 
-        <a href="${pageContext.request.contextPath}/pages/details-product.jsp" class="product-details-card">
-          <div class="product-card">
-            <img src="assets/images/pele_ball.jpg" alt="Product View" />
-            <h3 class="product-description">Bola Autografada por Pelé</h3>
-          </div>
-        </a>
+        <%
+            List<Produto> produtos = (List<Produto>) request.getAttribute("produtos");
+            if (produtos != null && !produtos.isEmpty()) {
+        %>
 
-        <a href="${pageContext.request.contextPath}/pages/details-product.jsp" class="product-details-card">
-          <div class="product-card">
-            <img src="assets/images/slipknot.jpg" alt="Product View" />
-            <h3 class="product-description">Guitarra Autografada SlipKnot</h3>
-          </div>
-        </a>
+        <div class="product-container">
 
-        <a href="${pageContext.request.contextPath}/pages/details-product.jsp" class="product-details-card">
-          <div class="product-card">
-            <img src="assets/images/fotos-beatles.jpg" alt="Product View" />
-            <h3 class="product-description">Foto Autografada Beatles</h3>
-          </div>
-        </a>
+            <%
+                for (Produto p : produtos) {
+            %>
 
-        <a href="${pageContext.request.contextPath}/pages/details-product.jsp" class="product-details-card">
-          <div class="product-card">
-            <img src="assets\images\pele_ball.jpg" alt="Product View" />
-            <h3 class="product-description">Bola Autografada por Pelé</h3>
-          </div>
-        </a>
+            <a href="#" class="product-details-card">
+                <div class="product-card">
+                    <img 
+                        src="MostrarFotoProduto?id=<%= p.getId() %>" 
+                        alt="Imagem do produto"
+                    />
 
-        <a href="${pageContext.request.contextPath}/pages/details-product.jsp" class="product-details-card">
-          <div class="product-card">
-            <img src="assets\images\pele_ball.jpg" alt="Product View" />
-            <h3 class="product-description">Bola Autografada por Pelé</h3>
-          </div>
-        </a>
+                    <h3 class="product-description">
+                        <%= p.getDescricao() %>
+                    </h3>
+
+                    <p class="product-info">
+                        Preço: R$ <%= p.getPreco() %><br/>
+                        Quantidade: <%= p.getQuantidade() %>
+                    </p>
+                </div>
+            </a>
+
+            <%
+                }
+            %>
+
+        </div>
+
+        <%
+            }
+        %>
       </div>
+          
+
     </main>
 
     <footer>

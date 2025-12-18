@@ -13,10 +13,6 @@
         <servlet-class>controle.usuario.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>InicioServlet</servlet-name>
-        <servlet-class>controle.inicio.InicioServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>RemoverUsuarioServlet</servlet-name>
         <servlet-class>controle.usuario.RemoverUsuarioServlet</servlet-class>
     </servlet>
@@ -37,16 +33,148 @@
         <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>InicioServlet</servlet-name>
-        <url-pattern>/Inicio</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>RemoverUsuarioServlet</servlet-name>
         <url-pattern>/RemoverUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AtualizarUsuarioServlet</servlet-name>
         <url-pattern>/AtualizarUsuario</url-pattern>
+    </servlet-mapping>
+    <!-- Categoria -->
+    <servlet>
+        <servlet-name>ListarCategoriaServlet</servlet-name>
+        <servlet-class>controle.categoria.ListarCategoriaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NovaCategoriaServlet</servlet-name>
+        <servlet-class>controle.categoria.NovaCategoriaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InserirCategoriaServlet</servlet-name>
+        <servlet-class>controle.categoria.InserirCategoriaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarCategoriaServlet</servlet-name>
+        <servlet-class>controle.categoria.MostrarCategoriaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AtualizarCategoriaServlet</servlet-name>
+        <servlet-class>controle.categoria.AtualizarCategoriaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoverCategoriaServlet</servlet-name>
+        <servlet-class>controle.categoria.RemoverCategoriaServlet</servlet-class>
+    </servlet>
+    <!-- Categoria -->
+    <servlet-mapping>
+        <servlet-name>ListarCategoriaServlet</servlet-name>
+        <url-pattern>/admin/ListarCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NovaCategoriaServlet</servlet-name>
+        <url-pattern>/admin/NovaCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InserirCategoriaServlet</servlet-name>
+        <url-pattern>/admin/InserirCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarCategoriaServlet</servlet-name>
+        <url-pattern>/admin/MostrarCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AtualizarCategoriaServlet</servlet-name>
+        <url-pattern>/admin/AtualizarCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoverCategoriaServlet</servlet-name>
+        <url-pattern>/admin/RemoverCategoria</url-pattern>
+    </servlet-mapping>
+    <!-- Produto -->
+    <servlet>
+        <servlet-name>ListarProdutoServlet</servlet-name>
+        <servlet-class>controle.produto.ListarProdutoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NovoProdutoServlet</servlet-name>
+        <servlet-class>controle.produto.NovoProdutoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InserirProdutoServlet</servlet-name>
+        <servlet-class>controle.produto.InserirProdutoServlet</servlet-class>
+        <multipart-config>
+            <location>C:\Users\guilh\Documents\upload\temp</location>
+            <max-file-size>52428800</max-file-size>
+            <!-- 50MB -->
+            <max-request-size>62914560</max-request-size>
+            <!-- 60MB -->
+            <file-size-threshold>1048576</file-size-threshold>
+            <!-- 1MB -->
+        </multipart-config>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarProdutoServlet</servlet-name>
+        <servlet-class>controle.produto.MostrarProdutoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AtualizarProdutoServlet</servlet-name>
+        <servlet-class>controle.produto.AtualizarProdutoServlet</servlet-class>
+        <multipart-config>
+            <location>C:\Users\guilh\Documents\upload\temp</location>
+            <max-file-size>52428800</max-file-size>
+            <!-- 50MB -->
+            <max-request-size>62914560</max-request-size>
+            <!-- 60MB -->
+            <file-size-threshold>1048576</file-size-threshold>
+            <!-- 1MB -->
+        </multipart-config>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarFotoProdutoServlet</servlet-name>
+        <servlet-class>controle.produto.MostrarFotoProdutoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoverProdutoServlet</servlet-name>
+        <servlet-class>controle.produto.RemoverProdutoServlet</servlet-class>
+    </servlet>
+    <!-- Produto -->
+    <servlet-mapping>
+        <servlet-name>ListarProdutoServlet</servlet-name>
+        <url-pattern>/admin/ListarProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NovoProdutoServlet</servlet-name>
+        <url-pattern>/admin/NovoProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InserirProdutoServlet</servlet-name>
+        <url-pattern>/admin/InserirProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarProdutoServlet</servlet-name>
+        <url-pattern>/admin/MostrarProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AtualizarProdutoServlet</servlet-name>
+        <url-pattern>/admin/AtualizarProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarFotoProdutoServlet</servlet-name>
+        <url-pattern>/MostrarFotoProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoverProdutoServlet</servlet-name>
+        <url-pattern>/admin/RemoverProduto</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet>
+        <servlet-name>InicioServlet</servlet-name>
+        <servlet-class>controle.inicio.InicioServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InicioServlet</servlet-name>
+        <url-pattern>/Inicio</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>Inicio</welcome-file>

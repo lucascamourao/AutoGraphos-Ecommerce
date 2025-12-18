@@ -11,7 +11,7 @@
   </head>
   <body>
     <header>
-      <a href="${pageContext.request.contextPath}/index.jsp" class="logo-photo">
+      <a href="<%= request.getContextPath()%>/Inicio" class="logo-photo">
         <div>
           <img
             src="<%= request.getContextPath() %>\assets\images\icon_ecommerce_new.png"
@@ -103,6 +103,23 @@
               <button class="button-account-info">Minhas Compras</button>
             </div>
           </a>
+          
+          <% if (usuario.getAdministrador()) {
+            %>
+          <div>
+            <a href="${pageContext.request.contextPath}/admin/ListarProduto">
+                <button class="button-account-info" aria-label="Update Info">Produtos</button>
+            </a>
+          </div>
+          <div>
+            <a href="${pageContext.request.contextPath}/admin/ListarCategoria">
+                <button class="button-account-info" aria-label="Update Info">Categorias</button>
+            </a>
+          </div>
+          <% 
+           } 
+          %>
+                
           <div>
             <a href="${pageContext.request.contextPath}/pages/update-info.jsp">
                 <button class="button-account-info" aria-label="Update Info">Alterar Dados</button>

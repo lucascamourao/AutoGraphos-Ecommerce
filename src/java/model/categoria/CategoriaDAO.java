@@ -19,29 +19,29 @@ public class CategoriaDAO {
      * @return
      */
     public List<Categoria> obterTodas() {
-        List<Categoria> resultado = new ArrayList<>();
+        List<Categoria> categorias = new ArrayList<>();
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT id, descricao FROM categoria");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, nome FROM categoria ORDER BY nome ASC");
+            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Categoria categoria = new Categoria();
                 categoria.setId(resultSet.getInt("id"));
-                categoria.setDescricao(resultSet.getString("descricao"));
-                resultado.add(categoria);
+                categoria.setNome(resultSet.getString("nome"));
+                categorias.add(categoria);
             }
             resultSet.close();
-            statement.close();
+            preparedStatement.close();
             connection.close();
         } catch (ClassNotFoundException | SQLException ex) {
             return null;
         }
-        return resultado;
+        return categorias;
     }
 
     /**
-     * Método utilizado para obter uma categoria existente
+     * Método utilizado para obter uma categoria pelo identificador
      *
      * @param id
      * @return
@@ -51,13 +51,13 @@ public class CategoriaDAO {
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, descricao FROM categoria WHERE id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, nome FROM categoria WHERE id = ?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 categoria = new Categoria();
                 categoria.setId(resultSet.getInt("id"));
-                categoria.setDescricao(resultSet.getString("descricao"));
+                categoria.setNome(resultSet.getString("nome"));
             }
             resultSet.close();
             preparedStatement.close();
@@ -69,18 +69,18 @@ public class CategoriaDAO {
     }
 
     /**
-     * Método utilizado para inserir uma nova categoria
+     * Método para inserir uma nova categoria
      *
-     * @param descricao
+     * @param nome
      * @return
      */
-    public boolean inserir(String descricao) {
+    public boolean inserir(String nome) {
         boolean sucesso = false;
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO categoria (descricao) VALUES (?)");
-            preparedStatement.setString(1, descricao);
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO categoria (nome) VALUES (?)");
+            preparedStatement.setString(1, nome);
             sucesso = (preparedStatement.executeUpdate() == 1);
             preparedStatement.close();
             connection.close();
@@ -91,19 +91,19 @@ public class CategoriaDAO {
     }
 
     /**
-     * Método utilizado para atualizar uma categoria existente
+     * Método para atualizar uma categoria existente
      *
-     * @param descricao
+     * @param nome
      * @param id
      * @return
      */
-    public boolean atualizar(String descricao, int id) {
+    public boolean atualizar(String nome, int id) {
         boolean sucesso = false;
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE categoria SET descricao = ? WHERE id = ?");
-            preparedStatement.setString(1, descricao);
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE categoria SET nome = ? WHERE id = ?");
+            preparedStatement.setString(1, nome);
             preparedStatement.setInt(2, id);
             sucesso = (preparedStatement.executeUpdate() == 1);
             preparedStatement.close();
@@ -115,7 +115,7 @@ public class CategoriaDAO {
     }
 
     /**
-     * Método utilizado para remover uma categoria existente
+     * Método para remover uma categoria existente
      *
      * @param id
      * @return
