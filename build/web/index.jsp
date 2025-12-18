@@ -3,7 +3,8 @@
     Created on : 30 de out. de 2025, 17:06:49
     Author     : Leonardo Oliveira Moreira
 --%>
-
+<%@page import="model.produto.Produto"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 

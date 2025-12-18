@@ -1,4 +1,7 @@
 <%@page import="model.usuario.Usuario"%>
+<%@page import="model.categoria.Categoria"%>
+<%@page import="model.produto.Produto"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,69 +84,49 @@
     </header>
 
     <main>
-      <div class="form-page-container">
-        <h2>Alterar Dados</h2>
-        <div class="form-container">
-          <% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
-          <form action="${pageContext.request.contextPath}/AtualizarUsuario" method="post">
-            <input type="hidden" name="id" value="<%= usuario.getId() %>" />
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input
-                type="text"
-                id="movie-name"
-                name="email"
-                value="<%= usuario.getEmail() %>"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="movie-name">Nome</label>
-              <input
-                type="text"
-                id="movie-name"
-                name="nome"
-                value="<%= usuario.getNome() %>"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="movie-name">Endereço</label>
-              <input
-                type="text"
-                id="movie-name"
-                name="endereco"
-                value="<%= usuario.getEndereco() %>"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="movie-name">Usuário</label>
-              <input
-                type="text"
-                id="movie-name"
-                name="login"
-                value="<%= usuario.getLogin() %>"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="poster-url">Senha</label>
-              <input
-                type="password"
-                id="poster-url"
-                name="senha"
-                value="<%= usuario.getSenha() %>"
-              />
-            </div>
-
-            <button type="submit" class="button">Alterar</button>
-          </form>
-          <% if (request.getAttribute("mensagem") != null) {%>
-          <h3><%= request.getAttribute("mensagem")%></h3>
-          <% }%>
+        <h3>Cadastro de Produtos</h3>
+        <%
+            List<Produto> produtos = (List<Produto>) request.getAttribute("produtos");
+            if (produtos != null && !produtos.isEmpty()) {
+        %>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        for (Produto p : produtos) {
+                    %>
+                    <tr>
+                        <td><%= p.getId()%></td>
+                        <td><%= p.getDescricao()%></td>
+                        <td><%= p.getPreco()%></td>
+                        <td><%= p.getQuantidade()%></td>
+                        <td><%= p.getCategoria().getNome()%></td>
+                        <td><a href="<%= request.getContextPath()%>/admin/MostrarProduto?id=<%= p.getId()%>" role="button" class="btn btn-primary">Atualizar</a>&nbsp;<a href="<%= request.getContextPath()%>/admin/RemoverProduto?id=<%= p.getId()%>" role="button" class="btn btn-danger">Remover</a></td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                </tbody>
+            </table>
         </div>
-      </div>
+        <%
+            } else {
+        %>
+        <div>Não existem produtos registrados</div>
+        <%
+            }
+        %>
+        <a href="<%= request.getContextPath()%>/admin/NovoProduto" role="button" class="btn btn-primary">Novo Produto</a>
     </main>
 
     <footer>

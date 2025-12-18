@@ -1,5 +1,5 @@
 package model.produto;
-
+import model.categoria.Categoria;
 /**
  *
  * @author Guilherme Sousa Lopes & Lucas Cabral Amador Mourão
@@ -11,6 +11,7 @@ public class Produto {
     private Double preco;
     private String foto;
     private Integer quantidade;
+    private Categoria categoria;
     
 
     public Integer getId() {
@@ -52,4 +53,13 @@ public class Produto {
    public void setQuantidade(Integer quantidade) {
        this.quantidade = quantidade;
    }
+
+   public Categoria getCategoria() {
+       return categoria;
+   }
+
+   public void setCategoria(Categoria categoria) {
+       this.categoria = categoria;
+   }
+    
 }

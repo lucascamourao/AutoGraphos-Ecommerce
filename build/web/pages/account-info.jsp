@@ -107,7 +107,7 @@
           <% if (usuario.getAdministrador()) {
             %>
           <div>
-            <a href="${pageContext.request.contextPath}/pages/list-products.jsp">
+            <a href="${pageContext.request.contextPath}/admin/ListarProduto">
                 <button class="button-account-info" aria-label="Update Info">Produtos</button>
             </a>
           </div>
