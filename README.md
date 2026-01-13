@@ -6,12 +6,12 @@ O sistema permite o cadastro de clientes, o listagem de produtos e a navegação
 A aplicação foi desenvolvida para a cadeira de Programação para Web I 2025.2 (SMD0052), ministrada pelo Prof. Dr. Leonardo Oliveira Moreira.
 
 ### 🛠️ Tecnologias Utilizadas
-- Java EE / Jakarta EE
+- Java EE / Jakarta EE 6.1
 - JSP (JavaServer Pages)
 - Servlets
 - HTML / CSS / JavaScript
 - NetBeans IDE
-- Servidor Apache Tomcat
+- Servidor Apache Tomcat 10.1.50
 
 ### ⚙️ Requisitos do Ambiente
 - Java 25 (JDK 25) — versão mais recente da plataforma Java.
