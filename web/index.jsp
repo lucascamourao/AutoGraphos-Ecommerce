@@ -3,8 +3,11 @@
     Created on : 30 de out. de 2025, 17:06:49
     Author     : Leonardo Oliveira Moreira
 --%>
+<%@ page import="model.usuario.Usuario" %>
 <%@page import="model.produto.Produto"%>
+<%@page import="model.carrinho.CarrinhoItem"%>
 <%@page import="java.util.List"%>
+<%@page import="utils.Utils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -44,21 +47,6 @@
                 fill-rule="evenodd"
                 d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
                 clip-rule="evenodd"
-              />
-            </svg>
-          </button>
-        </a>
-
-        <a href="${pageContext.request.contextPath}/pages/shopping-cart-page.jsp">
-          <button id="shopping-cart-button" class="button-header">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              class="size-6"
-            >
-              <path
-                d="M2.25 2.25a.75.75 0 0 0 0 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 0 0-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 0 0 0-1.5H5.378A2.25 2.25 0 0 1 7.5 15h11.218a.75.75 0 0 0 .674-.421 60.358 60.358 0 0 0 2.96-7.228.75.75 0 0 0-.525-.965A60.864 60.864 0 0 0 5.68 4.509l-.232-.867A1.875 1.875 0 0 0 3.636 2.25H2.25ZM3.75 20.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM16.5 20.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z"
               />
             </svg>
           </button>
@@ -124,7 +112,7 @@
                 for (Produto p : produtos) {
             %>
 
-            <a href="#" class="product-details-card">
+            <a href="AdicionarItemCarrinho?produtoId=<%= p.getId() %>&quantidade=1" class="product-details-card">
                 <div class="product-card">
                     <img 
                         src="MostrarFotoProduto?id=<%= p.getId() %>" 
@@ -147,11 +135,104 @@
             %>
 
         </div>
+      </div>
+        <%
+            }
+            List<CarrinhoItem> itensCarrinhoCompras =
+                (List<CarrinhoItem>) request.getAttribute("itensCarrinhoCompras");
 
+            if (itensCarrinhoCompras != null && !itensCarrinhoCompras.isEmpty()) {
+                double totalCarrinhoCompras = 0;
+        %>
+
+        <hr/>
+        <section class="cart-container">
+            <h2 class="cart-title">Carrinho de Compras</h2>
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Produto</th>
+                        <th>Descrição</th>
+                        <th>Preço</th>
+                        <th>Qtd</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        int i = 1;
+                        for (CarrinhoItem item : itensCarrinhoCompras) {
+                    %>
+                    <tr>
+                        <td><%= i++ %></td>
+                        <td>
+                            <% if (item.getProduto().getFoto() != null
+                                   && !item.getProduto().getFoto().trim().isEmpty()) { %>
+                                <img
+                                    src="<%= request.getContextPath() %>/MostrarFotoProduto?id=<%= item.getProduto().getId() %>"
+                                    class="product-img-list"
+                                    alt="Produto"
+                                />
+                            <% } %>
+                        </td>
+                        <td><%= item.getProduto().getDescricao() %></td>
+                        <td>
+                            R$ <%= Utils.formatarMoeda(item.getProduto().getPreco()) %>
+                        </td>
+                        <td class="cart-qtd">
+                            <a
+                                class="qtd-btn"
+                                href="<%= request.getContextPath() %>/DiminuirItemCarrinho?produtoId=<%= item.getProduto().getId() %>"
+                            >−</a>
+
+                            <span class="qtd-value"><%= item.getQuantidade() %></span>
+
+                            <a
+                                class="qtd-btn"
+                                href="<%= request.getContextPath() %>/AdicionarItemCarrinho?produtoId=<%= item.getProduto().getId() %>&quantidade=1"
+                            >+</a>
+                        </td>
+                        <td>
+                            <a
+                                href="<%= request.getContextPath() %>/RemoverItemCarrinho?produtoId=<%= item.getProduto().getId() %>"
+                                class="cart-remove-btn"
+                            >
+                                Remover
+                            </a>
+                        </td>
+                    </tr>
+                    <%
+                            totalCarrinhoCompras +=
+                                item.getQuantidade() * item.getProduto().getPreco();
+                        }
+                    %>
+                </tbody>
+            </table>
+            <div class="cart-total">
+                Total: R$ <%= Utils.formatarMoeda(totalCarrinhoCompras) %>
+            </div>
+            <%
+                Usuario usuario = (Usuario) session.getAttribute("usuario");
+                boolean usuarioLogado = (usuario != null);
+            %>
+            <div class="cart-actions">
+                <% if (usuarioLogado) { %>
+                    <a href="<%= request.getContextPath() %>/FinalizarVenda"
+                       class="cart-buy-btn">
+                        Comprar
+                    </a>
+                <% } else { %>
+                    <span class="cart-buy-btn disabled">
+                        Comprar
+                    </span>
+                <% } %>
+            </div>
+        </section>
         <%
             }
         %>
-      </div>
+
           
 
     </main>

@@ -282,6 +282,30 @@ public class ProdutoDAO {
         }
         return sucesso;
     }
+    
+    public boolean atualizarQuantidade(int idProduto, int novaQuantidade) {
+        boolean sucesso = false;
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(
+                JDBC_URL, JDBC_USUARIO, JDBC_SENHA
+            );
+
+            PreparedStatement ps = connection.prepareStatement(
+                "UPDATE produto SET quantidade = ? WHERE id = ?"
+            );
+            ps.setInt(1, novaQuantidade);
+            ps.setInt(2, idProduto);
+
+            sucesso = (ps.executeUpdate() == 1);
+
+            ps.close();
+            connection.close();
+        } catch (ClassNotFoundException | SQLException ex) {
+            return false;
+        }
+        return sucesso;
+    }
 
     /**
      * Método para remover um produto existente

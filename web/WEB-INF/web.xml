@@ -137,6 +137,10 @@
         <servlet-name>RemoverProdutoServlet</servlet-name>
         <servlet-class>controle.produto.RemoverProdutoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RelatorioProdutosFaltantesServlet</servlet-name>
+        <servlet-class>controle.produto.RelatorioProdutosFaltantesServlet</servlet-class>
+    </servlet>
     <!-- Produto -->
     <servlet-mapping>
         <servlet-name>ListarProdutoServlet</servlet-name>
@@ -165,6 +169,71 @@
     <servlet-mapping>
         <servlet-name>RemoverProdutoServlet</servlet-name>
         <url-pattern>/admin/RemoverProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioProdutosFaltantesServlet</servlet-name>
+        <url-pattern>/admin/RelatorioProdutosFaltantes</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!-- Carrinho -->
+    <servlet>
+        <servlet-name>AdicionarItemCarrinhoServlet</servlet-name>
+        <servlet-class>controle.carrinho.AdicionarItemCarrinhoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoverItemCarrinhoServlet</servlet-name>
+        <servlet-class>controle.carrinho.RemoverItemCarrinhoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DiminuirItemCarrinhoServlet</servlet-name>
+        <servlet-class>controle.carrinho.DiminuirItemCarrinhoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdicionarItemCarrinhoServlet</servlet-name>
+        <url-pattern>/AdicionarItemCarrinho</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoverItemCarrinhoServlet</servlet-name>
+        <url-pattern>/RemoverItemCarrinho</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DiminuirItemCarrinhoServlet</servlet-name>
+        <url-pattern>/DiminuirItemCarrinho</url-pattern>
+    </servlet-mapping>
+
+    <!-- Venda -->
+    <servlet>
+        <servlet-name>FinalizarVendaServlet</servlet-name>
+        <servlet-class>controle.venda.FinalizarVendaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FinalizarVendaServlet</servlet-name>
+        <url-pattern>/FinalizarVenda</url-pattern>
+    </servlet-mapping>   
+    <servlet>
+        <servlet-name>DeletarVendaServlet</servlet-name>
+        <servlet-class>controle.venda.DeletarVendaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeletarVendaServlet</servlet-name>
+        <url-pattern>/admin/DeletarVenda</url-pattern>
+    </servlet-mapping>   
+    <servlet>
+        <servlet-name>RelatorioComprasServlet</servlet-name>
+        <servlet-class>controle.venda.RelatorioComprasServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RelatorioComprasServlet</servlet-name>
+        <url-pattern>/admin/RelatorioCompras</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>RelatorioVendasServlet</servlet-name>
+        <servlet-class>controle.venda.RelatorioVendasServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RelatorioVendasServlet</servlet-name>
+        <url-pattern>/admin/RelatorioVendas</url-pattern>
     </servlet-mapping>
     
     

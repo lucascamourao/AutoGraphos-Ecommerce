@@ -1,5 +1,6 @@
 package model.venda;
-
+import java.sql.Timestamp;
+import model.usuario.Usuario;
 /**
  *
  * @author Guilherme Sousa Lopes & Lucas Cabral Amador Mourão
@@ -9,7 +10,8 @@ package model.venda;
 public class Venda {
     
     private Integer id;
-    private String data_hora;
+    private Timestamp data_hora;
+    private Usuario usuario;
 
     public Integer getId() {
         return id;
@@ -19,12 +21,19 @@ public class Venda {
         this.id = id;
     }
 
-    public String getDataHora() {
+    public Timestamp getDataHora() {
         return data_hora;
     }
 
-    public void setDataHora(String data_hora) {
+    public void setDataHora(Timestamp data_hora) {
         this.data_hora = data_hora;
     }
     
+   public Usuario getUsuario() {
+       return usuario;
+   }
+
+   public void setUsuario(Usuario usuario) {
+       this.usuario = usuario;
+   }
 }

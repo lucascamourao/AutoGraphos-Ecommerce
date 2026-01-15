@@ -1,4 +1,3 @@
-/**
 package controle.produto;
 
 import java.io.IOException;
@@ -58,4 +57,3 @@ public class RelatorioProdutosFaltantesServlet extends HttpServlet {
     }
 
 }
-*/

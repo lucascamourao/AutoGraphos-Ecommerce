@@ -5,6 +5,8 @@ import static config.Config.JDBC_SENHA;
 import static config.Config.JDBC_URL;
 import static config.Config.JDBC_USUARIO;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -131,4 +133,32 @@ public class UsuarioDAO {
         return usuario;
     }
     
+
+    public List<Usuario> obterTodos() {
+        List<Usuario> resultado = new ArrayList<>();
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT id, nome, endereco, email, login, senha, administrador FROM usuario");
+            while (resultSet.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setId(resultSet.getInt("id"));
+                usuario.setNome(resultSet.getString("nome"));
+                usuario.setEndereco(resultSet.getString("endereco"));
+                usuario.setEmail(resultSet.getString("email"));
+                usuario.setLogin(resultSet.getString("login"));
+                usuario.setSenha(resultSet.getString("senha"));
+                usuario.setAdministrador(resultSet.getBoolean("administrador"));
+                resultado.add(usuario);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return resultado;
+    }
 }
